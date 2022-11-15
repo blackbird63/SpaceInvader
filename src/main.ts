@@ -39,7 +39,7 @@ class MainScene extends Phaser.Scene {
       preload() {
             this.load.image(
                   'spaceBackground',
-                  'public/assets/images/backgroundSpace.png'
+                  'assets/images/backgroundSpace.png'
             );
             this.load.image('meteorite', 'assets/images/meteorite.png');
 
@@ -200,7 +200,8 @@ class MainScene extends Phaser.Scene {
         }
       }
 
-      private enemyHitPlayer(enemy: Enemy) {
+      private enemyHitPlayer(player, enemy: Enemy) {
+            player;
         let explosion: Explosion = this.assetManager.explosions.get();
         enemy.kill(explosion);
         let live: Phaser.GameObjects.Sprite = this.scoreManager.lives.getFirstAlive();
@@ -239,7 +240,8 @@ class MainScene extends Phaser.Scene {
         }
     }
 
-    private enemyBulletHitPlayer(enemyBullet: EnemyBullet) {
+    private enemyBulletHitPlayer(player, enemyBullet: EnemyBullet) {
+      player;
         let explosion: Explosion = this.assetManager.explosions.get();
         enemyBullet.kill();
         let live: Phaser.GameObjects.Sprite = this.scoreManager.lives.getFirstAlive();
@@ -303,4 +305,5 @@ const config: Phaser.Types.Core.GameConfig = {
       scene: MainScene,
 };
 
-new Phaser.Game(config);
+const game = new Phaser.Game(config);
+game;

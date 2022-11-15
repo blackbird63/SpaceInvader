@@ -1,4 +1,3 @@
-import { Animation } from './animation';
 import { Explosion } from './explosion';
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
@@ -12,7 +11,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       ) {
             super(scene, x, y, z);
       }
-      update(...args: any[]): void {
+      update(): void {
             if (this.y > 580) {
                   this.resetEnemyPosition(this);
             }

@@ -20,7 +20,7 @@ export class ScoreManager {
     }
   
     private _init() {
-      const { width: SIZE_X, height: SIZE_Y } = this._scene.game.canvas;
+      const { width: SIZE_X } = this._scene.game.canvas;
       const textConfig = {
         fontFamily: `'Arial', sans-serif`,
         fill: "#ffffff",

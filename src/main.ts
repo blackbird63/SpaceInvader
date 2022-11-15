@@ -200,7 +200,7 @@ class MainScene extends Phaser.Scene {
         }
       }
 
-      private enemyHitPlayer(player, enemy: Enemy) {
+      private enemyHitPlayer(enemy: Enemy) {
         let explosion: Explosion = this.assetManager.explosions.get();
         enemy.kill(explosion);
         let live: Phaser.GameObjects.Sprite = this.scoreManager.lives.getFirstAlive();
@@ -239,7 +239,7 @@ class MainScene extends Phaser.Scene {
         }
     }
 
-    private enemyBulletHitPlayer(player, enemyBullet: EnemyBullet) {
+    private enemyBulletHitPlayer(enemyBullet: EnemyBullet) {
         let explosion: Explosion = this.assetManager.explosions.get();
         enemyBullet.kill();
         let live: Phaser.GameObjects.Sprite = this.scoreManager.lives.getFirstAlive();
@@ -303,4 +303,4 @@ const config: Phaser.Types.Core.GameConfig = {
       scene: MainScene,
 };
 
-const game = new Phaser.Game(config);
+new Phaser.Game(config);

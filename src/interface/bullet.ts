@@ -2,7 +2,7 @@ export class Bullet extends Phaser.Physics.Arcade.Sprite {
       constructor(scene: Phaser.Scene) {
             super(scene, 0, 0, 'bullet');
       }
-        update(...args: any[]): void {
+        update(): void {
               if (this.y < 30) {
                     this.destroy();
               }

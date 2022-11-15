@@ -39,7 +39,7 @@ class MainScene extends Phaser.Scene {
       preload() {
             this.load.image(
                   'spaceBackground',
-                  'assets/images/backgroundSpace.png'
+                  'public/assets/images/backgroundSpace.png'
             );
             this.load.image('meteorite', 'assets/images/meteorite.png');
 

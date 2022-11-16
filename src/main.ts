@@ -266,14 +266,14 @@ class MainScene extends Phaser.Scene {
 
     restart() {
       this.scene.restart();
-      //   this.round = 1;
-      //   this.state = GameState.Play;
-      //   this.player.enableBody(true, this.player.x, this.player.y, true, true);
-      //   this.scoreManager.resetLives();
-      //   this.scoreManager.hideText();
-      //   this.scoreManager.setHighScore();
-      //   this.enemiesManager.reset(1);
-      //   this.assetManager.reset();
+        this.round = 1;
+        this.state = GameState.Play;
+        this.player.enableBody(true, this.player.x, this.player.y, true, true);
+        this.scoreManager.resetLives();
+        this.scoreManager.hideText();
+        this.scoreManager.setHighScore();
+        this.enemiesManager.reset(1);
+        this.assetManager.reset();
     }
     nextLevel() {
       

@@ -66,6 +66,12 @@ class MainScene extends Phaser.Scene {
                 frameWidth: 128,
                 frameHeight: 128,
             });
+            this.load.image('fume', 'assets/images/fume.png');
+
+            this.sound.volume = 0.5;
+            this.load.audio('soundExplosion', 'assets/sounds/explosionsound.mp3');
+            this.load.audio('playerFire', 'assets/sounds/playerFire.mp3');
+
       }
 
       create() {
@@ -82,6 +88,17 @@ class MainScene extends Phaser.Scene {
             //For the player 
             this.player = Player.create(this);
             this.cursors = this.input.keyboard.createCursorKeys();
+
+            // let particles = this.add.particles('fume');
+            
+            // let emitter = particles.createEmitter({
+            //       speed: 20,
+            //       scale: { start: 0, end: 0.3 },
+            //       gravityY: 600,
+            //       blendMode: 'ADD',
+            //   });
+             
+            //   emitter.startFollow(this.player);
             
             // enemy and meteorite
             this.scoreManager = new ScoreManager(this);
@@ -167,7 +184,7 @@ class MainScene extends Phaser.Scene {
             
             let bullet : Bullet = this.assetManager.bullets.get();
             bullet.shoot(this.player.x, this.player.y - 50);
-            bullet.play('bullet_anim');
+            
 
             // if (this.time.now > this.bulletTime) {
             //       let bullet: Bullet = this.assetManager.bullets.get();
@@ -191,6 +208,7 @@ class MainScene extends Phaser.Scene {
         let explosion: Explosion = this.assetManager.explosions.get();
         bullet.kill();
         enemy.kill(explosion);
+        this.sound.play('soundExplosion');
         
         this.scoreManager.increaseScore();
         if (!this.enemiesManager.hasEnemyAlive) {
@@ -203,15 +221,21 @@ class MainScene extends Phaser.Scene {
       private enemyHitPlayer(player, enemy: Enemy) {
             player;
         let explosion: Explosion = this.assetManager.explosions.get();
+        let explosion2: Explosion = this.assetManager.explosions.get();
+
         enemy.kill(explosion);
+        this.sound.play('soundExplosion');
         let live: Phaser.GameObjects.Sprite = this.scoreManager.lives.getFirstAlive();
         if (live) {
             live.setActive(false).setVisible(false);
         }
-
-        explosion.setPosition(this.player.x, this.player.y);
-        explosion.play("explosion").on("animationcomplete", () => explosion.kill());
-        
+      //   this.player.disableBody(true, false);
+      //   let timePause : Number = this.time.now + 200;
+      //   if(timePause < this.time.now){
+      //       this.player.disableBody(false, false);
+      //   }
+        explosion2.setPosition(this.player.x, this.player.y);
+        explosion2.play("explosion").on("animationcomplete", () => explosion.kill());
         if (this.scoreManager.noMoreLives) {
             this.scoreManager.setGameOverText();
             this.assetManager.gameOver();
@@ -251,7 +275,7 @@ class MainScene extends Phaser.Scene {
 
         explosion.setPosition(this.player.x, this.player.y);
         explosion.play("explosion").on("animationcomplete", () => explosion.kill());
-        
+        this.sound.play('soundExplosion');
         if (this.scoreManager.noMoreLives) {
             this.scoreManager.setGameOverText();
             this.assetManager.gameOver();

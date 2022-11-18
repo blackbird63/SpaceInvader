@@ -10,7 +10,8 @@ export class Bullet extends Phaser.Physics.Arcade.Sprite {
       shoot(x: number, y: number) {
             this.setPosition(x, y);
             this.setVelocityY(-400);
-            
+            this.scene.sound.play('playerFire');
+            this.play('bullet_anim');
       } 
       kill() {
             this.destroy();

@@ -70,7 +70,7 @@ class MainScene extends Phaser.Scene {
 
             this.sound.volume = 0.5;
             this.load.audio('soundExplosion', 'assets/sounds/explosionsound.mp3');
-            this.load.audio('playerFire', 'assets/sounds/playerFire.mp3');
+            this.load.audio('playerFire', 'assets/sounds/playerfire.mp3');
 
       }
 

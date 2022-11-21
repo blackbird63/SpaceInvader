@@ -1,3 +1,5 @@
+import { round1, scoreStored, updateScore } from "./assets";
+
 export class ScoreManager {
     scoreText: Phaser.GameObjects.Text;
     roundText: Phaser.GameObjects.Text;
@@ -10,8 +12,8 @@ export class ScoreManager {
     }
   
     highScore = 0;
-    score = 0;
-    round = 1;
+    score = scoreStored;
+    round = round1;
   
     constructor(private _scene: Phaser.Scene) {
       this._init();
@@ -77,8 +79,8 @@ export class ScoreManager {
       }
     }
   
-    setWinText(round : number) {
-      this._setBigText("YOU WON THIS ROUND", `PRESS SPACE FOR ROUND ${round + 1}`);
+    setWinText() {
+      this._setBigText("YOU WON THIS ROUND", `PRESS SPACE FOR ROUND ${round1 + 1}`);
     }
     // setWinText() {
     //   this._setBigText("YOU WON!", "PRESS SPACE FOR NEW GAME");
@@ -86,6 +88,7 @@ export class ScoreManager {
   
     setGameOverText() {
       this._setBigText("GAME OVER", "PRESS SPACE FOR NEW GAME");
+      
     }
   
     hideText() {
@@ -116,6 +119,7 @@ export class ScoreManager {
   
     increaseScore(step = 10) {
       this.score += step;
+      updateScore(this.score);
       this.print();
     }
     increaseRound(step = 1) {

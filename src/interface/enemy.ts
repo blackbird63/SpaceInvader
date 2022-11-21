@@ -1,5 +1,6 @@
 import { Explosion } from './explosion';
 
+
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
       life = 0;
 
@@ -20,10 +21,12 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       setlife(numberLife: number) {
             this.life = numberLife;
       }
+      
 
       enemyHasLife(): boolean {
             return this.life > 1;
       }
+
 
       private resetEnemyPosition(enemy: Enemy) {
             enemy.y = 0;
@@ -40,6 +43,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
                         explosion
                               .play('explosion')
                               .on('animationcomplete', () => explosion.kill());
+                        
                         this.destroy();
                   } else {
                         explosion.setScale(0.3);
